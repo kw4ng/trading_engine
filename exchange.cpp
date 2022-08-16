@@ -7,7 +7,9 @@
 #include <chrono>
 #include <vector>
 #include <queue>
+#include <list>
 #include <thread>
+#include <mutex>
 
 using namespace std;
 
@@ -25,9 +27,10 @@ using namespace std;
 
  TODO:
 
- - add market orders
+ - need to fix add order so market orders don't ask for price
+        - i think i did it
+ 
  - change order function
- - execute function
  - server/client application
  - multithreading
 
@@ -82,7 +85,13 @@ enum changeOrderType : char {
 
 
 class Exchange {
-private:
+    
+public:
+    class Order;
+    class Limit;
+    class Orderbook;
+
+public:
     
     class Order {
     protected:
@@ -113,18 +122,20 @@ private:
         std::chrono::system_clock::time_point get_time() const {
             return time;
         }
-        
-        void partial_fill(int fill_volume) {
-            volume -= fill_volume;
-        }
+
     };
     
     class LimitOrder : public Order {
-    public:
+    private:
         float price;
+        
+        bool partially_filled;
+        int partial_volume;
     public:
         LimitOrder* next;
         LimitOrder* prev;
+        
+        Limit* parent_limit;
         
         // constructor
         LimitOrder(string order_ticker, int order_volume, float order_price, orderSide order_side, int order_id, std::chrono::system_clock::time_point order_time) {
@@ -136,13 +147,33 @@ private:
             id = order_id;
             time = order_time;
             
+            partially_filled = false;
+            partial_volume = order_volume;
+            
             next = nullptr;
             prev = nullptr;
+            
+            parent_limit = nullptr;
         }
         
-        virtual float get_price() {
+        float get_price() {
             return price;
         }
+        
+        int get_partial_volume() {
+            return partial_volume;
+        }
+        
+        void partial_fill(int fill_volume) {
+            partially_filled = true;
+            partial_volume -= fill_volume;
+        }
+        
+        bool is_partially_filled() {
+            return partially_filled;
+        }
+        
+        
     };
     
     class MarketOrder : public Order {
@@ -158,20 +189,21 @@ private:
         }
     };
     
-    
-    
     class Limit {
+        friend class Orderbook;
+        friend class Exchange;
     private:
         float price;
         int limit_orders;
         int limit_volume;
-        
+    
         LimitOrder* head;
         LimitOrder* tail;
         
+        Orderbook* parent_orderbook;
     public:
         // constructor
-        Limit() : price(0), limit_orders(0), limit_volume(0), head(nullptr), tail(nullptr) {}
+        Limit() : price(0), limit_orders(0), limit_volume(0), head(nullptr), tail(nullptr), parent_orderbook(nullptr) {}
         
         bool is_empty() {
             return head == nullptr && tail == nullptr;
@@ -203,6 +235,8 @@ private:
                 tail_order->next = new_order;
                 tail = new_order;
             }
+            
+            new_order->parent_limit = this;
             
             limit_orders++;
             limit_volume += new_order->get_volume();
@@ -247,59 +281,192 @@ private:
             cout << "change order limit" << endl;
         }
         
-        void fulfill_head_order(unordered_map<int, LimitOrder*> &orders_map, int order_volume) {
-            // head order is fulfilled
-            if (head->get_volume() <= order_volume) {
-                cout << "order " << head->get_id() << " executed at $" << head->get_price() << " per share" << endl;
+        bool limit_fulfill_order(unordered_map<int, LimitOrder*> &orders_map, int order_volume, float &spread) {
+            
+            bool head_side = head->get_side();
 
-                limit_orders--;
-                limit_volume -= head->get_volume();
+            while (order_volume > 0) {
+                LimitOrder* this_order = head;
+                
+                // head order is fulfilled
+                if (this_order->get_partial_volume() <= order_volume) {
+                    // print order information when fulfilled
+                    cout << "order " << this_order->get_id() << " executed at $" << this_order->get_price() << " per share:" << endl;
+                    cout << "\t order id: " << this_order->get_id() << endl;
+                    cout << "\t order ticker: " << this_order->get_ticker() << endl;
+                    string side = (this_order->get_side() == buy) ? "buy" : "sell";
+                    cout << "\t order side: " << side << endl;
+                    cout << "\t order price: " << this_order->get_price() << endl;
+                    cout << "\t order volume: " << this_order->get_volume() << endl;
+                    
+                    time_t tt = std::chrono::system_clock::to_time_t(this_order->get_time());
+                    cout << "\t order time: " << ctime(&tt) << endl;
+                    
+                    // update spread
+                    if (head_side == buy) {
+                        spread += this_order->get_partial_volume() * this_order->get_price();
+                    } else {
+                        spread -= this_order->get_partial_volume() * this_order->get_price();
+                    }
+                    
+                    // update appropriate volumes
+                    order_volume -= this_order->get_partial_volume();
+                    
+                    limit_orders--;
+                    limit_volume -= this_order->get_partial_volume();
+                    
+                    if (head_side == buy) {
+                        this_order->parent_limit->parent_orderbook->bid_orders--;
+                        this_order->parent_limit->parent_orderbook->bid_volume -= this_order->get_partial_volume();
+                    } else {
+                        this_order->parent_limit->parent_orderbook->ask_orders--;
+                        this_order->parent_limit->parent_orderbook->ask_volume -= this_order->get_partial_volume();
+                    }
+                    
+                    this_order->parent_limit->parent_orderbook->orderbook_orders--;
+                    this_order->parent_limit->parent_orderbook->orderbook_volume -= this_order->get_partial_volume();
 
-                // set new head to next
-                LimitOrder* new_head = head->next;
-                delete head;
-                head = new_head;
+                    this_order->parent_limit->parent_orderbook->parent_exchange->total_num_orders--;
+                    this_order->parent_limit->parent_orderbook->parent_exchange->total_volume -= this_order->get_partial_volume();
+                    
+                    // erase order
+                    orders_map.erase(this_order->get_id());
+                    
+                    // check if order was only one at limit
+                    if (head == this_order && tail == this_order) {
+                        head = nullptr;
+                        tail = nullptr;
+                    } else {
+                        head = this_order->next;
+                        this_order->next->prev = nullptr;
+                    }
+                    
+                    delete this_order;
+                }
+                // head order is partially filled
+                else {
+                    this_order->partial_fill(order_volume);
+                    
+                    // update appropriate volumes
+                    limit_volume -= order_volume;
+                                        
+                    if (head_side == buy) {
+                        this_order->parent_limit->parent_orderbook->bid_volume -= order_volume;
+                    } else {
+                        this_order->parent_limit->parent_orderbook->ask_volume -= order_volume;
+                    }
+                    
+                    this_order->parent_limit->parent_orderbook->orderbook_volume -= order_volume;
 
+                    this_order->parent_limit->parent_orderbook->parent_exchange->total_volume -= this_order->get_partial_volume();
+                                    
+                    // update spread
+                    if (head_side == buy) {
+                        spread += (this_order->get_volume() - this_order->get_partial_volume()) * this_order->get_price();
+                    } else {
+                        spread -= (this_order->get_volume() - this_order->get_partial_volume()) * this_order->get_price();
+                    }
+                    
+                    order_volume = 0;
+                }
             }
-            // head order only partially filled
-            else {
-                head->partial_fill(order_volume);
-                limit_volume -= order_volume;
-            }
-
             
-            
-            
-            
-//            vector<int> fulfilled_orders;
-//
-//            while (order_volume > 0) {
-//                // order at head is fulfilled
-//                if (head->get_volume() <= order_volume) {
-//                    order_volume -= head->get_volume();
-//
-//                    fulfilled_orders.push_back(head->get_id());
-//
-//                    limit_orders--;
-//                    limit_volume -= head->get_volume();
-//
-//                    // set new head to next
-//                    LimitOrder* new_head = head->next;
-//                    delete head;
-//                    head = new_head;
-//                }
-//                // head volume covers entire volume
-//                else {
-//                    head->partial_fill(order_volume);
-//                    limit_volume -= order_volume;
-//                    order_volume = 0;
-//                }
-//            }
+            return limit_volume == 0;
         }
+        
+        bool market_fulfill_order(unordered_map<int, LimitOrder*> &orders_map, int &order_volume, float &price) {
+            bool head_side = head->get_side();
+
+            while (order_volume > 0 && limit_volume > 0) {
+                LimitOrder* this_order = head;
+                
+                // head order is fulfilled
+                if (this_order->get_partial_volume() <= order_volume) {
+                    // print order information when fulfilled
+                    cout << "order " << this_order->get_id() << " executed at $" << this_order->get_price() << " per share:" << endl;
+                    cout << "\t order id: " << this_order->get_id() << endl;
+                    cout << "\t order ticker: " << this_order->get_ticker() << endl;
+                    string side = (this_order->get_side() == buy) ? "buy" : "sell";
+                    cout << "\t order side: " << side << endl;
+                    cout << "\t order price: " << this_order->get_price() << endl;
+                    cout << "\t order volume: " << this_order->get_volume() << endl;
+                    
+                    time_t tt = std::chrono::system_clock::to_time_t(this_order->get_time());
+                    cout << "\t order time: " << ctime(&tt) << endl;
+
+                    // execution time?
+                    
+        
+                    // calculate average market price
+                    price += this_order->get_partial_volume() * this_order->get_price();
+                    
+                    // update appropriate volumes
+                    order_volume -= this_order->get_partial_volume();
+                    
+                    limit_orders--;
+                    limit_volume -= this_order->get_partial_volume();
+                    
+                    if (head_side == buy) {
+                        this_order->parent_limit->parent_orderbook->bid_orders--;
+                        this_order->parent_limit->parent_orderbook->bid_volume -= this_order->get_partial_volume();
+                    } else {
+                        this_order->parent_limit->parent_orderbook->ask_orders--;
+                        this_order->parent_limit->parent_orderbook->ask_volume -= this_order->get_partial_volume();
+                    }
+                    
+                    this_order->parent_limit->parent_orderbook->orderbook_orders--;
+                    this_order->parent_limit->parent_orderbook->orderbook_volume -= this_order->get_partial_volume();
+
+                    this_order->parent_limit->parent_orderbook->parent_exchange->total_num_orders--;
+                    this_order->parent_limit->parent_orderbook->parent_exchange->total_volume -= this_order->get_partial_volume();
+                    
+                    // erase order
+                    orders_map.erase(this_order->get_id());
+                    
+                    // check if order was only one at limit
+                    if (head == this_order && tail == this_order) {
+                        head = nullptr;
+                        tail = nullptr;
+                    } else {
+                        head = this_order->next;
+                        this_order->next->prev = nullptr;
+                    }
+                    
+                    delete this_order;
+                }
+                // head order is partially filled
+                else {
+                    this_order->partial_fill(order_volume);
+                    
+                    // update appropriate volumes
+                    limit_volume -= order_volume;
+                    
+                    if (head_side == buy) {
+                        this_order->parent_limit->parent_orderbook->bid_volume -= order_volume;
+                    } else {
+                        this_order->parent_limit->parent_orderbook->ask_volume -= order_volume;
+                    }
+                    
+                    this_order->parent_limit->parent_orderbook->orderbook_volume -= order_volume;
+
+                    this_order->parent_limit->parent_orderbook->parent_exchange->total_volume -= order_volume;
+
+                    // calculate average market price
+                    price += order_volume * this_order->get_price();
+                    
+                    order_volume = 0;
+                }
+            }
+            
+            return limit_volume == 0;
+        }
+        
     };
     
     
     class Orderbook {
+        friend class Limit;
+        friend class Exchange;
     private:
         // binary trees of bid and ask limits
         map<float, Limit, greater<>> bids;
@@ -310,16 +477,25 @@ private:
         unordered_map<float, Limit*> asks_table;
         
         // queue of incoming market orders
-        queue<MarketOrder*> market_orders;
+        queue<MarketOrder*> market_bids;
+        queue<MarketOrder*> market_asks;
         
         const string ticker;
+        
+        int bid_orders;
+        int bid_volume;
+        
+        int ask_orders;
+        int ask_volume;
         
         int orderbook_orders;
         int orderbook_volume;
         
+        Exchange* parent_exchange;
+        
     public:
         // constructor
-        Orderbook(string orderbook_ticker) : ticker(move(orderbook_ticker)), orderbook_orders(0), orderbook_volume(0) {}
+        Orderbook(string orderbook_ticker) : ticker(move(orderbook_ticker)), bid_orders(0), bid_volume(0), ask_orders(0), ask_volume(0), orderbook_orders(0), orderbook_volume(0), parent_exchange(nullptr) {}
         
         int get_num_orders() const {
             return 0;
@@ -334,27 +510,45 @@ private:
         }
         
         void add_market_order(MarketOrder* new_order) {
-            market_orders.push(new_order);
+            // bid order
+            if (new_order->get_side() == buy) {
+                market_bids.push(new_order);
+            }
+            // ask order
+            else {
+                market_asks.push(new_order);
+            }
+            
+            orderbook_orders++;
+            orderbook_volume += new_order->get_volume();
         }
         
         void add_limit_order(LimitOrder* new_order) {
             // bid order
             if (new_order->get_side() == buy) {
                 // limit does not exist yet
-                if (!bids_table.contains(new_order->price)) {
-                    bids_table[new_order->price] = &bids[new_order->price];
+                if (!bids_table.contains(new_order->get_price())) {
+                    bids_table[new_order->get_price()] = &bids[new_order->get_price()];
+                    bids_table[new_order->get_price()]->parent_orderbook = this;
                 }
                 
-                bids_table[new_order->price]->add_order(new_order);
+                bids_table[new_order->get_price()]->add_order(new_order);
+                
+                bid_orders++;
+                bid_volume += new_order->get_volume();
             }
             // ask order
             else if (new_order->get_side() == sell) {
                 // limit does not exist yet
-                if (!asks_table.contains(new_order->price)) {
-                    asks_table[new_order->price] = &asks[new_order->price];
+                if (!asks_table.contains(new_order->get_price())) {
+                    asks_table[new_order->get_price()] = &asks[new_order->get_price()];
+                    asks_table[new_order->get_price()]->parent_orderbook = this;
                 }
                 
-                asks_table[new_order->price]->add_order(new_order);
+                asks_table[new_order->get_price()]->add_order(new_order);
+                
+                ask_orders++;
+                ask_volume += new_order->get_volume();
             }
             
             orderbook_orders++;
@@ -364,21 +558,27 @@ private:
         void cancel_order(LimitOrder* this_order) {
             // bid order
             if (this_order->get_side() == buy) {
-                bids_table[this_order->price]->cancel_order(this_order);
+                bids_table[this_order->get_price()]->cancel_order(this_order);
                 
-                if (bids_table[this_order->price]->is_empty()) {
-                    bids.erase(this_order->price);
-                    bids_table.erase(this_order->price);
+                if (bids_table[this_order->get_price()]->is_empty()) {
+                    bids.erase(this_order->get_price());
+                    bids_table.erase(this_order->get_price());
                 }
+                
+                bid_orders--;
+                bid_volume -= this_order->get_volume();
             }
             // asks order
             else if (this_order->get_side() == sell) {
-                asks_table[this_order->price]->cancel_order(this_order);
+                asks_table[this_order->get_price()]->cancel_order(this_order);
                 
-                if (asks_table[this_order->price]->is_empty()) {
-                    asks.erase(this_order->price);
-                    asks_table.erase(this_order->price);
+                if (asks_table[this_order->get_price()]->is_empty()) {
+                    asks.erase(this_order->get_price());
+                    asks_table.erase(this_order->get_price());
                 }
+                
+                ask_orders--;
+                ask_volume -= this_order->get_volume();
             }
             
             orderbook_orders--;
@@ -389,8 +589,8 @@ private:
             cout << "change order orderbook" << endl;
         }
         
-        int match_orders(unordered_map<int, LimitOrder*> &orders_map) {
-            // no bid or no ask orders
+        int match_limit_orders(unordered_map<int, LimitOrder*> &orders_map) {
+            // no bid or ask orders
             if (bids.empty() || asks.empty()) {
                 return 0;
             }
@@ -398,58 +598,120 @@ private:
             auto bids_it = bids.begin();
             auto asks_it = asks.begin();
             
-            // fulfill market orders
-//            if (!market_orders.empty()) {
-//                MarketOrder* current_order = market_orders.front();
-//                // buy order
-//                if (current_order->get_side() == buy) {
-//                    while (current_order->get_volume() > 0) {
-//                        current_order->partial_fill(asks_it->second.fulfill_top_order(orders_map, current_order->get_id(), current_order->get_volume()));
-//                    }
-//
-//
-//
-//                    cout << "order " << current_order->get_id() << " executed at $ per share" << endl;
-//
-//                    market_orders.pop();
-//                    delete current_order;
-//                }
-//                // sell order
-//                else {
-//                    // bids_it->second.fulfill_top_order(market_orders.front()->get_volume());
-//                }
-//            }
-            
             float spread = 0;
 
-            // fulfill orders when lowest asks is less than highest bid
+            // fulfill limit orders when lowest asks is less than highest bid
             while (get_best_ask() <= get_best_bid()) {
                 cout << "start matching orders" << endl;
                 
                 int volume_to_fulfill = min(bids_it->second.get_volume(), asks_it->second.get_volume());
                 
-                while (volume_to_fulfill > 0) {
-                    // bid order came first
-                    if (bids_it->second.get_head_order()->get_time() < asks_it->second.get_head_order()->get_time()) {
-                        bids_it->second.fulfill_head_order(orders_map, volume_to_fulfill);
-                        asks_it->second.fulfill_head_order(orders_map, volume_to_fulfill);
-                    }
-                    // ask order came first
-                    else {
-                        asks_it->second.fulfill_head_order(orders_map, volume_to_fulfill);
-                        bids_it->second.fulfill_head_order(orders_map, volume_to_fulfill);
-                    }
-                    
+                // need to reset best bid
+                if (bids_it->second.limit_fulfill_order(orders_map, volume_to_fulfill, spread)) {
+                    bids_table.erase(bids_it->second.get_price());
+                    bids.erase(bids_it);
+                    bids_it = bids.begin();
+                }
+                
+                // need to reset best ask
+                if (asks_it->second.limit_fulfill_order(orders_map, volume_to_fulfill, spread)) {
+                    asks_table.erase(asks_it->second.get_price());
+                    asks.erase(asks_it);
+                    asks_it = asks.begin();
                 }
             }
             
+            cout << "done with limit orders" << endl;
+
             return spread;
+        }
+        
+        void market_match_orders(unordered_map<int, LimitOrder*> &orders_map) {
+            // edge cases
+            if (market_bids.empty() && market_asks.empty()) {
+                return;
+            } else if (market_bids.empty() && (!market_asks.empty() && market_asks.front()->get_volume() > bid_volume)) {
+                return;
+            } else if (market_asks.empty() && (!market_bids.empty() && market_bids.front()->get_volume() > ask_volume)) {
+                return;
+            } else if ((!market_bids.empty() && market_bids.front()->get_volume() > ask_volume) && (!market_asks.empty() && market_asks.front()->get_volume() > bid_volume)) {
+                return;
+            }
+                        
+            auto bids_it = bids.begin();
+            auto asks_it = asks.begin();
+            
+            bool no_valid_bid_orders = false;
+            bool no_valid_ask_orders = false;
+            
+            while (!market_bids.empty() || !market_asks.empty()) {
+                
+                if (market_bids.empty() || market_bids.front()->get_volume() > ask_volume) no_valid_bid_orders = true;
+                if (market_asks.empty() || market_asks.front()->get_volume() > bid_volume) no_valid_ask_orders = true;
+                
+                MarketOrder* this_order;
+                
+                // no valid market orders
+                if (no_valid_bid_orders && no_valid_ask_orders) break;
+                // only ask orders valid
+                else if (no_valid_bid_orders) this_order = market_asks.front();
+                // only bid orders valid
+                else if (no_valid_ask_orders) this_order = market_bids.front();
+                // get first market order in queue
+                else this_order = (market_bids.front()->get_time() < market_asks.front()->get_time()) ? market_bids.front() : market_asks.front();
+                
+                int this_order_volume = this_order->get_volume();
+                float avg_price = 0;
+                
+                // buy market order
+                if (this_order->get_side() == buy) {
+                    while (this_order_volume > 0) {
+                        if (asks_it->second.market_fulfill_order(orders_map, this_order_volume, avg_price)) {
+                            asks_table.erase(asks_it->second.get_price());
+                            asks.erase(asks_it);
+                            asks_it = asks.begin();
+                        }
+                    }
+                }
+                // sell market order
+                else if (this_order->get_side() == sell) {
+                    while (this_order_volume > 0) {
+                        if (bids_it->second.market_fulfill_order(orders_map, this_order_volume, avg_price)) {
+                            bids_table.erase(bids_it->second.get_price());
+                            bids.erase(bids_it);
+                            bids_it = bids.begin();
+                        }
+                    }
+                }
+                
+                avg_price /= this_order->get_volume();
+                
+                cout << "order " << this_order->get_id() << " executed at $" << avg_price << " per share:" << endl;
+                cout << "\t order id: " << this_order->get_id() << endl;
+                cout << "\t order ticker: " << this_order->get_ticker() << endl;
+                string side = (this_order->get_side() == buy) ? "buy" : "sell";
+                cout << "\t order side: " << side << endl;
+                cout << "\t order volume: " << this_order->get_volume() << endl;
+                
+                time_t tt = std::chrono::system_clock::to_time_t(this_order->get_time());
+                cout << "\t order time: " << ctime(&tt) << endl;
+                
+                this_order->get_side() == buy ? market_bids.pop() : market_asks.pop();
+                
+                orderbook_orders--;
+                orderbook_volume -= this_order->get_volume();
+                
+                this->parent_exchange->total_num_orders--;
+                this->parent_exchange->total_volume -= this_order->get_volume();
+            }
+            
+            cout << "done with market orders" << endl;
         }
     };
     
 private:
     // hash table of all orderbooks
-    unordered_map<string, Orderbook> orderbooks;
+    unordered_map<string, Orderbook*> orderbooks;
     
     // hash table of all orders
     unordered_map<int, LimitOrder*> orders;
@@ -469,19 +731,21 @@ public:
         
         // orderbook for new ticker
         if (!orderbooks.contains(order_ticker)) {
-            Orderbook new_orderbook(order_ticker);
+            Orderbook* new_orderbook = new Orderbook(order_ticker);
+            new_orderbook->parent_exchange = this;
+            
             orderbooks.insert({order_ticker, new_orderbook});
         }
 
         // create new market order
         if (order_type == market) {
             MarketOrder* new_order = new MarketOrder(order_ticker, order_volume, order_side, order_id, current_time);
-            orderbooks.at(order_ticker).add_market_order(new_order);
+            orderbooks.at(order_ticker)->add_market_order(new_order);
         }
         // create and process new limit order
         else {
             LimitOrder* new_order = new LimitOrder(order_ticker, order_volume, order_price, order_side, order_id, current_time);
-            orderbooks.at(order_ticker).add_limit_order(new_order);
+            orderbooks.at(order_ticker)->add_limit_order(new_order);
             orders[order_id] = new_order;
         }
         
@@ -499,7 +763,7 @@ public:
         if (orders.contains(order_id)) {
             LimitOrder* this_order = orders[order_id];
             
-            orderbooks.at(this_order->get_ticker()).cancel_order(this_order);
+            orderbooks.at(this_order->get_ticker())->cancel_order(this_order);
             
             orders.erase(order_id);
             
@@ -522,7 +786,8 @@ public:
     
     void execute() {
         for (auto orderbook : orderbooks) {
-            total_captured_spread += orderbook.second.match_orders(orders);
+            orderbook.second->market_match_orders(orders);
+            total_captured_spread += orderbook.second->match_limit_orders(orders);
         }
         
         cout << "execute complete" << endl;
@@ -570,16 +835,17 @@ int main(int argc, const char * argv[]) {
  
     
     
+    exchange.add_order(market, "APPL", 0, 40, buy);
+    exchange.add_order(market, "APPL", 0, 100, sell);
     
-    
-    int order1, order2, order3, order4, order5, order6;
+    int order1, order2, order3, order4, order5, order6, order7;
     
     order1 = exchange.add_order(limit, "APPL", 100, 100, buy);
     order2 = exchange.add_order(limit, "APPL", 99, 150, buy);
     order3 = exchange.add_order(limit, "APPL", 98, 130, buy);
 
     order4 = exchange.add_order(limit, "APPL", 101, 100, sell);
-    exchange.add_order(limit, "APPL", 101, 50, sell);
+    order7 = exchange.add_order(limit, "APPL", 101, 50, sell);
     order5 = exchange.add_order(limit, "APPL", 102, 150, sell);
     order6 = exchange.add_order(limit, "APPL", 103, 130, sell);
     
@@ -592,7 +858,14 @@ int main(int argc, const char * argv[]) {
         
     cout << "adding matchable orders" << endl;
     
-    exchange.add_order(limit, "APPL", 101, 50, buy);
+    
+    // when head ask order volume is greater
+    // exchange.add_order(limit, "APPL", 101, 50, buy);
+    
+    // when head ask order volume is less
+    exchange.add_order(limit, "APPL", 102, 120, buy);
+    
+    exchange.print_order(order7);
     
     // should fulfill all of order 4, then leave with 20 more volume on buy side
     
