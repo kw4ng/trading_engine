@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <ctime>
 #include <chrono>
+#include <utility>
 #include <vector>
 #include <queue>
 #include <list>
@@ -18,7 +19,7 @@ using namespace std;
     ORDERBOOK FEATURES:
         - process limit and market orders
         - add, cancel, and change order functions
-        - FIFO w/ partially fufilled orders (maybe add PRORATA)
+        - FIFO w/ partially fulfilled orders (maybe add PRORATA)
         - acting as market maker to capture spread
  
  */
@@ -26,9 +27,6 @@ using namespace std;
 /*
 
  TODO:
-
- - need to fix add order so market orders don't ask for price
-        - i think i did it
  
  - change order function
  - server/client application
@@ -39,7 +37,7 @@ using namespace std;
 
 /*
  
- HOW ORDERS ARE FUFILLED
+ HOW ORDERS ARE FULFILLED
  
  
  - IF SELL ORDER SITS ON BOOK AT 99, AND BUY ORDER COMES IN FOR 101
@@ -50,7 +48,7 @@ using namespace std;
  
  
  - IF SELL ORDER SITS ON BOOK AT 99 AND 98, AND BUY ORDER COMES IN FOR 101
-    - ORDER FUFILLED AT 98, SELLER GETS 99 AND BUYER GETS 98, MARKET MAKER GETS 0
+    - ORDER FULFILLED AT 98, SELLER GETS 99 AND BUYER GETS 98, MARKET MAKER GETS 0
  
  
  - ASKS     102
@@ -139,7 +137,7 @@ public:
         
         // constructor
         LimitOrder(string order_ticker, int order_volume, float order_price, orderSide order_side, int order_id, std::chrono::system_clock::time_point order_time) {
-            ticker = order_ticker;
+            ticker = std::move(order_ticker);
             price = order_price;
             volume = order_volume;
             side = order_side;
@@ -156,11 +154,11 @@ public:
             parent_limit = nullptr;
         }
         
-        float get_price() {
+        float get_price() const {
             return price;
         }
         
-        int get_partial_volume() {
+        int get_partial_volume() const {
             return partial_volume;
         }
         
@@ -180,7 +178,7 @@ public:
     public:
         // constructor
         MarketOrder(string order_ticker, int order_volume, orderSide order_side, int order_id, std::chrono::system_clock::time_point order_time) {
-            ticker = order_ticker;
+            ticker = std::move(order_ticker);
             volume = order_volume;
             side = order_side;
             
@@ -374,7 +372,7 @@ public:
             return limit_volume == 0;
         }
         
-        bool market_fulfill_order(unordered_map<int, LimitOrder*> &orders_map, int &order_volume, float &price) {
+        bool market_fulfill_order(unordered_map<int, LimitOrder*> &orders_map, int &order_volume, float &avg_price) {
             bool head_side = head->get_side();
 
             while (order_volume > 0 && limit_volume > 0) {
@@ -398,7 +396,7 @@ public:
                     
         
                     // calculate average market price
-                    price += this_order->get_partial_volume() * this_order->get_price();
+                    avg_price += this_order->get_partial_volume() * this_order->get_price();
                     
                     // update appropriate volumes
                     order_volume -= this_order->get_partial_volume();
@@ -452,7 +450,7 @@ public:
                     this_order->parent_limit->parent_orderbook->parent_exchange->total_volume -= order_volume;
 
                     // calculate average market price
-                    price += order_volume * this_order->get_price();
+                    avg_price += order_volume * this_order->get_price();
                     
                     order_volume = 0;
                 }
@@ -589,7 +587,7 @@ public:
             cout << "change order orderbook" << endl;
         }
         
-        int match_limit_orders(unordered_map<int, LimitOrder*> &orders_map) {
+        float match_limit_orders(unordered_map<int, LimitOrder*> &orders_map) {
             // no bid or ask orders
             if (bids.empty() || asks.empty()) {
                 return 0;
@@ -731,7 +729,7 @@ public:
         
         // orderbook for new ticker
         if (!orderbooks.contains(order_ticker)) {
-            Orderbook* new_orderbook = new Orderbook(order_ticker);
+            auto* new_orderbook = new Orderbook(order_ticker);
             new_orderbook->parent_exchange = this;
             
             orderbooks.insert({order_ticker, new_orderbook});
@@ -739,12 +737,12 @@ public:
 
         // create new market order
         if (order_type == market) {
-            MarketOrder* new_order = new MarketOrder(order_ticker, order_volume, order_side, order_id, current_time);
+            auto* new_order = new MarketOrder(order_ticker, order_volume, order_side, order_id, current_time);
             orderbooks.at(order_ticker)->add_market_order(new_order);
         }
         // create and process new limit order
         else {
-            LimitOrder* new_order = new LimitOrder(order_ticker, order_volume, order_price, order_side, order_id, current_time);
+            auto* new_order = new LimitOrder(order_ticker, order_volume, order_price, order_side, order_id, current_time);
             orderbooks.at(order_ticker)->add_limit_order(new_order);
             orders[order_id] = new_order;
         }

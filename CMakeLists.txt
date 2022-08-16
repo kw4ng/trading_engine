@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.22)
-project(basic_server_client)
+project(trading_engine)
+
+set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(networking)
 
 add_subdirectory(client)
 add_subdirectory(server)
+
+add_executable(${PROJECT_NAME} exchange.cpp)

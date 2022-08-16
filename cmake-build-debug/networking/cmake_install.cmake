@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/kevin/CLionProjects/basic_server_client/networking
+# Install script for directory: C:/Users/kevin/CLionProjects/trading_engine/networking
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

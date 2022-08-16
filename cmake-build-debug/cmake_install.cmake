@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/kevin/CLionProjects/basic_server_client
+# Install script for directory: C:/Users/kevin/CLionProjects/trading_engine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,17 +39,17 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/kevin/CLionProjects/basic_server_client/cmake-build-debug/networking/cmake_install.cmake")
+  include("C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/networking/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/kevin/CLionProjects/basic_server_client/cmake-build-debug/client/cmake_install.cmake")
+  include("C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/client/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/kevin/CLionProjects/basic_server_client/cmake-build-debug/server/cmake_install.cmake")
+  include("C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -60,5 +60,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/kevin/CLionProjects/basic_server_client/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
