@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/networking.dir/src/client/tcp_client.cpp.obj"
-  "CMakeFiles/networking.dir/src/client/tcp_client.cpp.obj.d"
-  "CMakeFiles/networking.dir/src/server/tcp_connection.cpp.obj"
-  "CMakeFiles/networking.dir/src/server/tcp_connection.cpp.obj.d"
-  "CMakeFiles/networking.dir/src/server/tcp_server.cpp.obj"
-  "CMakeFiles/networking.dir/src/server/tcp_server.cpp.obj.d"
+  "CMakeFiles/networking.dir/src/client/tcp_client.cpp.o"
+  "CMakeFiles/networking.dir/src/client/tcp_client.cpp.o.d"
+  "CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o"
+  "CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o.d"
+  "CMakeFiles/networking.dir/src/server/tcp_server.cpp.o"
+  "CMakeFiles/networking.dir/src/server/tcp_server.cpp.o.d"
   "libnetworking.a"
   "libnetworking.pdb"
 )

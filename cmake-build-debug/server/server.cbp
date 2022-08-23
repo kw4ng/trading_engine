@@ -5,82 +5,93 @@
 		<Option title="server"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\client\;CMake Files\networking\;CMake Files\server\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\client\;CMake Files\exchange\;CMake Files\networking\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\;CMake Files\server\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server"/>
+				<Option working_dir="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="server">
-				<Option output="C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/server.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server"/>
+				<Option output="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Users/kevin/CLionProjects/trading_engine/server/networking"/>
-					<Add directory="C:/Users/kevin/CLionProjects/trading_engine/networking/include"/>
-					<Add directory="C:/Users/kevin/source/libraries/boost_1_79_0"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/Users/kevinwang/Documents/projects/trading_engine/server/networking"/>
+					<Add directory="/Users/kevinwang/Documents/projects/trading_engine/networking/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 server"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 server"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="server/fast">
-				<Option output="C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/server.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server"/>
+				<Option output="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Users/kevin/CLionProjects/trading_engine/server/networking"/>
-					<Add directory="C:/Users/kevin/CLionProjects/trading_engine/networking/include"/>
-					<Add directory="C:/Users/kevin/source/libraries/boost_1_79_0"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
-					<Add directory="C:/Program Files/JetBrains/CLion 2022.1.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+					<Add directory="/Users/kevinwang/Documents/projects/trading_engine/server/networking"/>
+					<Add directory="/Users/kevinwang/Documents/projects/trading_engine/networking/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 server/fast"/>
-					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 server/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/server/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/kevin/CLionProjects/trading_engine/server/main.cpp">
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/server/main.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="C:/Users/kevin/CLionProjects/trading_engine/CMakeLists.txt">
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="C:/Users/kevin/CLionProjects/trading_engine/client/CMakeLists.txt">
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/client/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\client\"/>
 		</Unit>
-		<Unit filename="C:/Users/kevin/CLionProjects/trading_engine/networking/CMakeLists.txt">
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/exchange/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\exchange\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/networking/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\networking\"/>
 		</Unit>
-		<Unit filename="C:/Users/kevin/CLionProjects/trading_engine/server/CMakeLists.txt">
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/Boost-1.79.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/Boost-1.79.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/server/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\server\"/>
 		</Unit>
 	</Project>

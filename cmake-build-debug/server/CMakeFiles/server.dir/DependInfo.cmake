@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/kevin/CLionProjects/trading_engine/server/main.cpp" "server/CMakeFiles/server.dir/main.cpp.obj" "gcc" "server/CMakeFiles/server.dir/main.cpp.obj.d"
+  "/Users/kevinwang/Documents/projects/trading_engine/server/main.cpp" "server/CMakeFiles/server.dir/main.cpp.o" "gcc" "server/CMakeFiles/server.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "C:/Users/kevin/CLionProjects/trading_engine/cmake-build-debug/networking/CMakeFiles/networking.dir/DependInfo.cmake"
+  "/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking/CMakeFiles/networking.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

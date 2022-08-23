@@ -8,11 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/kevin/CLionProjects/trading_engine/exchange.cpp" "CMakeFiles/trading_engine.dir/exchange.cpp.obj" "gcc" "CMakeFiles/trading_engine.dir/exchange.cpp.obj.d"
+  "/Users/kevinwang/Documents/projects/trading_engine/main.cpp" "CMakeFiles/trading_engine.dir/main.cpp.o" "gcc" "CMakeFiles/trading_engine.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/CMakeFiles/exchange.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

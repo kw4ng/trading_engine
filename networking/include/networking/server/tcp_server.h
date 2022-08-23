@@ -19,6 +19,7 @@ class TCPServer {
     using on_join_handler = std::function<void(TCPConnection::pointer)>;
     using on_leave_handler = std::function<void(TCPConnection::pointer)>;
     using on_client_message_handler = std::function<void(std::string)>;
+    using on_client_action_handler = std::function<void(std::string)>;
 
 public:
     TCPServer(IPv ip_version, int port);
@@ -36,6 +37,8 @@ public:
     on_leave_handler on_leave;
     on_client_message_handler on_client_message;
 
+    on_client_action_handler on_client_action;
+
 private:
     IPv _ip_version;
     int _port;
@@ -46,6 +49,7 @@ private:
     std::optional<boost::asio::ip::tcp::socket> _socket;
 
     std::unordered_set<TCPConnection::pointer> _connections {};
+
 };
 
 

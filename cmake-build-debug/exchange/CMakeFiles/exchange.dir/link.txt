@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libexchange.a CMakeFiles/exchange.dir/src/exchange.cpp.o CMakeFiles/exchange.dir/src/limit.cpp.o CMakeFiles/exchange.dir/src/order.cpp.o CMakeFiles/exchange.dir/src/orderbook.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libexchange.a

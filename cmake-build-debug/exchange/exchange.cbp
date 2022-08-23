@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="exchange"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\client\;CMake Files\exchange\;CMake Files\networking\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\;CMake Files\server\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="exchange">
+				<Option output="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/libexchange.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/kevinwang/Documents/projects/trading_engine/exchange/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 exchange"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="exchange/fast">
+				<Option output="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/libexchange.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/kevinwang/Documents/projects/trading_engine/exchange/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 exchange/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/exchange/src/exchange.cpp">
+			<Option target="exchange"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/exchange/src/limit.cpp">
+			<Option target="exchange"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/exchange/src/order.cpp">
+			<Option target="exchange"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/exchange/src/orderbook.cpp">
+			<Option target="exchange"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\client\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/exchange/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\exchange\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/networking/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\networking\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/Boost-1.79.0/BoostConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/Boost-1.79.0/BoostConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/../../../../../usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\"/>
+		</Unit>
+		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/server/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\server\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

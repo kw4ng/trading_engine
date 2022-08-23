@@ -1,2 +1,2 @@
-C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\ar.exe qc libnetworking.a CMakeFiles/networking.dir/src/client/tcp_client.cpp.obj CMakeFiles/networking.dir/src/server/tcp_connection.cpp.obj CMakeFiles/networking.dir/src/server/tcp_server.cpp.obj
-C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\ranlib.exe libnetworking.a
+/Library/Developer/CommandLineTools/usr/bin/ar qc libnetworking.a CMakeFiles/networking.dir/src/client/tcp_client.cpp.o CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o CMakeFiles/networking.dir/src/server/tcp_server.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libnetworking.a

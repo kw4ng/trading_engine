@@ -1,9 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/trading_engine.dir/exchange.cpp.obj"
-  "CMakeFiles/trading_engine.dir/exchange.cpp.obj.d"
-  "libtrading_engine.dll.a"
-  "trading_engine.exe"
-  "trading_engine.exe.manifest"
+  "CMakeFiles/trading_engine.dir/main.cpp.o"
+  "CMakeFiles/trading_engine.dir/main.cpp.o.d"
+  "trading_engine"
   "trading_engine.pdb"
 )
 

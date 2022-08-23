@@ -45,6 +45,10 @@ int main(int argc, char** argv) {
         server.broadcast(message);
     };
 
+    server.on_client_action = [&server](const std::string& message) {
+
+    };
+
     server.run();
 
     return 0;
