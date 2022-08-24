@@ -9,6 +9,7 @@ TCPServer::TCPServer(IPv ip_version, int port) : _ip_version(ip_version), _port(
         _acceptor(_io_context, tcp::endpoint(ip_version == IPv::v4 ? tcp::v4() : tcp::v6(), _port)) {}
 
 int TCPServer::run() {
+    std::cout << "Starting trading engine server... \n" << std::endl;
 
     try {
         start_accept();
@@ -25,6 +26,14 @@ void TCPServer::broadcast(const std::string& message) {
     for (auto& connection : _connections) {
         connection->post(message);
     }
+}
+
+void TCPServer::add_order(orderType type, orderSide side, const std::string &ticker, int volume, float price = 0) {
+    exchange.add_order(type, ticker, price, volume, side);
+}
+
+void TCPServer::cancel_order(int id) {
+    exchange.cancel_order(id);
 }
 
 void TCPServer::start_accept() {
@@ -47,6 +56,12 @@ void TCPServer::start_accept() {
                 [this](const std::string& message) {
                     if (on_client_message) {
                         on_client_message(message);
+                    }
+                },
+
+                [this](const std::string& message) {
+                    if (on_client_order) {
+                        on_client_order(message);
                     }
                 },
 

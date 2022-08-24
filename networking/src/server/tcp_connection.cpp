@@ -10,7 +10,7 @@ TCPConnection::TCPConnection(boost::asio::ip::tcp::socket&& socket) : _socket(st
     _username = name.str();
 }
 
-void TCPConnection::start(messageHandler&& message_handler, errorHandler&& error_handler) {
+void TCPConnection::start(messageHandler&& message_handler, orderHandler&& order_handler, errorHandler&& error_handler) {
 //    auto strong_this = shared_from_this();
 //
 //    boost::asio::async_write(_socket, boost::asio::buffer(_message),
@@ -34,6 +34,7 @@ void TCPConnection::start(messageHandler&& message_handler, errorHandler&& error
 //        }
 //    });
         _message_handler = std::move(message_handler);
+        _order_handler = std::move(order_handler);
         _error_handler = std::move(error_handler);
 
         async_read();
@@ -71,6 +72,7 @@ void TCPConnection::on_read(boost::system::error_code ec, size_t bytes_transferr
 
     // add message handler
     _message_handler(message.str());
+    _order_handler(message.str());
     async_read();
 }
 

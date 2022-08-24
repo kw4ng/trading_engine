@@ -83,10 +83,66 @@ networking/CMakeFiles/networking.dir/src/client/tcp_client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/networking.dir/src/client/tcp_client.cpp.s"
 	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevinwang/Documents/projects/trading_engine/networking/src/client/tcp_client.cpp -o CMakeFiles/networking.dir/src/client/tcp_client.cpp.s
 
+networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o: networking/CMakeFiles/networking.dir/flags.make
+networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o: ../networking/src/server/exchange/exchange.cpp
+networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o: networking/CMakeFiles/networking.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o -MF CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o.d -o CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o -c /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/exchange.cpp
+
+networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.i"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/exchange.cpp > CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.i
+
+networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.s"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/exchange.cpp -o CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.s
+
+networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o: networking/CMakeFiles/networking.dir/flags.make
+networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o: ../networking/src/server/exchange/limit.cpp
+networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o: networking/CMakeFiles/networking.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o -MF CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o.d -o CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o -c /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/limit.cpp
+
+networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/networking.dir/src/server/exchange/limit.cpp.i"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/limit.cpp > CMakeFiles/networking.dir/src/server/exchange/limit.cpp.i
+
+networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/networking.dir/src/server/exchange/limit.cpp.s"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/limit.cpp -o CMakeFiles/networking.dir/src/server/exchange/limit.cpp.s
+
+networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.o: networking/CMakeFiles/networking.dir/flags.make
+networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.o: ../networking/src/server/exchange/order.cpp
+networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.o: networking/CMakeFiles/networking.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.o"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.o -MF CMakeFiles/networking.dir/src/server/exchange/order.cpp.o.d -o CMakeFiles/networking.dir/src/server/exchange/order.cpp.o -c /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/order.cpp
+
+networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/networking.dir/src/server/exchange/order.cpp.i"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/order.cpp > CMakeFiles/networking.dir/src/server/exchange/order.cpp.i
+
+networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/networking.dir/src/server/exchange/order.cpp.s"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/order.cpp -o CMakeFiles/networking.dir/src/server/exchange/order.cpp.s
+
+networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o: networking/CMakeFiles/networking.dir/flags.make
+networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o: ../networking/src/server/exchange/orderbook.cpp
+networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o: networking/CMakeFiles/networking.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o -MF CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o.d -o CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o -c /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/orderbook.cpp
+
+networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.i"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/orderbook.cpp > CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.i
+
+networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.s"
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/exchange/orderbook.cpp -o CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.s
+
 networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o: networking/CMakeFiles/networking.dir/flags.make
 networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o: ../networking/src/server/tcp_connection.cpp
 networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o: networking/CMakeFiles/networking.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o"
 	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o -MF CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o.d -o CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o -c /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/tcp_connection.cpp
 
 networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.i: cmake_force
@@ -100,7 +156,7 @@ networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.s: cmake_forc
 networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.o: networking/CMakeFiles/networking.dir/flags.make
 networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.o: ../networking/src/server/tcp_server.cpp
 networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.o: networking/CMakeFiles/networking.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.o"
 	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.o -MF CMakeFiles/networking.dir/src/server/tcp_server.cpp.o.d -o CMakeFiles/networking.dir/src/server/tcp_server.cpp.o -c /Users/kevinwang/Documents/projects/trading_engine/networking/src/server/tcp_server.cpp
 
 networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.i: cmake_force
@@ -114,6 +170,10 @@ networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.s: cmake_force
 # Object files for target networking
 networking_OBJECTS = \
 "CMakeFiles/networking.dir/src/client/tcp_client.cpp.o" \
+"CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o" \
+"CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o" \
+"CMakeFiles/networking.dir/src/server/exchange/order.cpp.o" \
+"CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o" \
 "CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o" \
 "CMakeFiles/networking.dir/src/server/tcp_server.cpp.o"
 
@@ -121,11 +181,15 @@ networking_OBJECTS = \
 networking_EXTERNAL_OBJECTS =
 
 networking/libnetworking.a: networking/CMakeFiles/networking.dir/src/client/tcp_client.cpp.o
+networking/libnetworking.a: networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o
+networking/libnetworking.a: networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o
+networking/libnetworking.a: networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.o
+networking/libnetworking.a: networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o
 networking/libnetworking.a: networking/CMakeFiles/networking.dir/src/server/tcp_connection.cpp.o
 networking/libnetworking.a: networking/CMakeFiles/networking.dir/src/server/tcp_server.cpp.o
 networking/libnetworking.a: networking/CMakeFiles/networking.dir/build.make
 networking/libnetworking.a: networking/CMakeFiles/networking.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libnetworking.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libnetworking.a"
 	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && $(CMAKE_COMMAND) -P CMakeFiles/networking.dir/cmake_clean_target.cmake
 	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/networking.dir/link.txt --verbose=$(VERBOSE)
 

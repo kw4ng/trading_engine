@@ -9,6 +9,7 @@
 using boost::asio::ip::tcp;
 
 using messageHandler = std::function<void(std::string)>;
+using orderHandler = std::function<void(std::string)>;
 using errorHandler = std::function<void()>;
 
 class TCPConnection : public std::enable_shared_from_this<TCPConnection> {
@@ -26,7 +27,7 @@ public:
         return _socket;
     }
 
-    void start(messageHandler&& message_handler, errorHandler&& error_handler);
+    void start(messageHandler&& message_handler, orderHandler&& order_handler, errorHandler&& error_handler);
     // posts message to client
     void post(const std::string& message);
 
@@ -49,7 +50,9 @@ private:
     boost::asio::streambuf _streambuf { 65536 };
 
     messageHandler _message_handler;
+    orderHandler _order_handler;
     errorHandler _error_handler;
+
 };
 
 

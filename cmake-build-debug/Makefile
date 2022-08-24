@@ -143,19 +143,6 @@ networking/fast:
 .PHONY : networking/fast
 
 #=============================================================================
-# Target rules for targets named exchange
-
-# Build rule for target.
-exchange: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 exchange
-.PHONY : exchange
-
-# fast build rule for target.
-exchange/fast:
-	$(MAKE) $(MAKESILENT) -f exchange/CMakeFiles/exchange.dir/build.make exchange/CMakeFiles/exchange.dir/build
-.PHONY : exchange/fast
-
-#=============================================================================
 # Target rules for targets named client
 
 # Build rule for target.
@@ -214,7 +201,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... client"
-	@echo "... exchange"
 	@echo "... networking"
 	@echo "... server"
 	@echo "... trading_engine"

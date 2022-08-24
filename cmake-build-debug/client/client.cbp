@@ -5,7 +5,7 @@
 		<Option title="client"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\client\;CMake Files\exchange\;CMake Files\networking\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\;CMake Files\server\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\client\;CMake Files\networking\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\lib\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\Boost-1.79.0\;CMake Files\..\..\..\..\..\usr\local\lib\cmake\boost_headers-1.79.0\;CMake Files\server\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/client"/>
@@ -72,9 +72,6 @@
 		</Unit>
 		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/client/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\client\"/>
-		</Unit>
-		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/exchange/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\exchange\"/>
 		</Unit>
 		<Unit filename="/Users/kevinwang/Documents/projects/trading_engine/networking/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\networking\"/>

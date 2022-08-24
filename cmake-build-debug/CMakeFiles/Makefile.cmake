@@ -39,7 +39,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.23.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.23.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.23.2/CMakeSystem.cmake"
-  "../exchange/CMakeLists.txt"
   "../networking/CMakeLists.txt"
   "../server/CMakeLists.txt"
   "/usr/local/lib/cmake/Boost-1.79.0/BoostConfig.cmake"
@@ -58,7 +57,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "networking/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "exchange/CMakeFiles/CMakeDirectoryInformation.cmake"
   "client/CMakeFiles/CMakeDirectoryInformation.cmake"
   "server/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
@@ -67,7 +65,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/trading_engine.dir/DependInfo.cmake"
   "networking/CMakeFiles/networking.dir/DependInfo.cmake"
-  "exchange/CMakeFiles/exchange.dir/DependInfo.cmake"
   "client/CMakeFiles/client.dir/DependInfo.cmake"
   "server/CMakeFiles/server.dir/DependInfo.cmake"
   )

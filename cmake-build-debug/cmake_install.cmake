@@ -44,11 +44,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
   include("/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/client/cmake_install.cmake")
 endif()
 

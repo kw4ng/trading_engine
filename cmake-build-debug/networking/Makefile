@@ -154,6 +154,102 @@ src/client/tcp_client.cpp.s:
 	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/client/tcp_client.cpp.s
 .PHONY : src/client/tcp_client.cpp.s
 
+src/server/exchange/exchange.o: src/server/exchange/exchange.cpp.o
+.PHONY : src/server/exchange/exchange.o
+
+# target to build an object file
+src/server/exchange/exchange.cpp.o:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.o
+.PHONY : src/server/exchange/exchange.cpp.o
+
+src/server/exchange/exchange.i: src/server/exchange/exchange.cpp.i
+.PHONY : src/server/exchange/exchange.i
+
+# target to preprocess a source file
+src/server/exchange/exchange.cpp.i:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.i
+.PHONY : src/server/exchange/exchange.cpp.i
+
+src/server/exchange/exchange.s: src/server/exchange/exchange.cpp.s
+.PHONY : src/server/exchange/exchange.s
+
+# target to generate assembly for a file
+src/server/exchange/exchange.cpp.s:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/exchange.cpp.s
+.PHONY : src/server/exchange/exchange.cpp.s
+
+src/server/exchange/limit.o: src/server/exchange/limit.cpp.o
+.PHONY : src/server/exchange/limit.o
+
+# target to build an object file
+src/server/exchange/limit.cpp.o:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.o
+.PHONY : src/server/exchange/limit.cpp.o
+
+src/server/exchange/limit.i: src/server/exchange/limit.cpp.i
+.PHONY : src/server/exchange/limit.i
+
+# target to preprocess a source file
+src/server/exchange/limit.cpp.i:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.i
+.PHONY : src/server/exchange/limit.cpp.i
+
+src/server/exchange/limit.s: src/server/exchange/limit.cpp.s
+.PHONY : src/server/exchange/limit.s
+
+# target to generate assembly for a file
+src/server/exchange/limit.cpp.s:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/limit.cpp.s
+.PHONY : src/server/exchange/limit.cpp.s
+
+src/server/exchange/order.o: src/server/exchange/order.cpp.o
+.PHONY : src/server/exchange/order.o
+
+# target to build an object file
+src/server/exchange/order.cpp.o:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.o
+.PHONY : src/server/exchange/order.cpp.o
+
+src/server/exchange/order.i: src/server/exchange/order.cpp.i
+.PHONY : src/server/exchange/order.i
+
+# target to preprocess a source file
+src/server/exchange/order.cpp.i:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.i
+.PHONY : src/server/exchange/order.cpp.i
+
+src/server/exchange/order.s: src/server/exchange/order.cpp.s
+.PHONY : src/server/exchange/order.s
+
+# target to generate assembly for a file
+src/server/exchange/order.cpp.s:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/order.cpp.s
+.PHONY : src/server/exchange/order.cpp.s
+
+src/server/exchange/orderbook.o: src/server/exchange/orderbook.cpp.o
+.PHONY : src/server/exchange/orderbook.o
+
+# target to build an object file
+src/server/exchange/orderbook.cpp.o:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.o
+.PHONY : src/server/exchange/orderbook.cpp.o
+
+src/server/exchange/orderbook.i: src/server/exchange/orderbook.cpp.i
+.PHONY : src/server/exchange/orderbook.i
+
+# target to preprocess a source file
+src/server/exchange/orderbook.cpp.i:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.i
+.PHONY : src/server/exchange/orderbook.cpp.i
+
+src/server/exchange/orderbook.s: src/server/exchange/orderbook.cpp.s
+.PHONY : src/server/exchange/orderbook.s
+
+# target to generate assembly for a file
+src/server/exchange/orderbook.cpp.s:
+	cd /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug && $(MAKE) $(MAKESILENT) -f networking/CMakeFiles/networking.dir/build.make networking/CMakeFiles/networking.dir/src/server/exchange/orderbook.cpp.s
+.PHONY : src/server/exchange/orderbook.cpp.s
+
 src/server/tcp_connection.o: src/server/tcp_connection.cpp.o
 .PHONY : src/server/tcp_connection.o
 
@@ -214,6 +310,18 @@ help:
 	@echo "... src/client/tcp_client.o"
 	@echo "... src/client/tcp_client.i"
 	@echo "... src/client/tcp_client.s"
+	@echo "... src/server/exchange/exchange.o"
+	@echo "... src/server/exchange/exchange.i"
+	@echo "... src/server/exchange/exchange.s"
+	@echo "... src/server/exchange/limit.o"
+	@echo "... src/server/exchange/limit.i"
+	@echo "... src/server/exchange/limit.s"
+	@echo "... src/server/exchange/order.o"
+	@echo "... src/server/exchange/order.i"
+	@echo "... src/server/exchange/order.s"
+	@echo "... src/server/exchange/orderbook.o"
+	@echo "... src/server/exchange/orderbook.i"
+	@echo "... src/server/exchange/orderbook.s"
 	@echo "... src/server/tcp_connection.o"
 	@echo "... src/server/tcp_connection.i"
 	@echo "... src/server/tcp_connection.s"

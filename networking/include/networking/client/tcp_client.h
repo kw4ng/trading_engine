@@ -21,6 +21,8 @@ public:
 
     void post(const std::string& message);
 
+    // void post_order(const orderAction& order_action);
+
 private:
     void async_read();
 
@@ -42,6 +44,8 @@ private:
     boost::asio::streambuf _streambuf { 65536 };
 
     std::queue<std::string> _outgoing_messages;
+
+    // std::queue<orderAction> _outgoing_order_actions;
 };
 
 

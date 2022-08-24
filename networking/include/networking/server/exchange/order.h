@@ -68,5 +68,8 @@ public:
     MarketOrder(int id, const std::string &ticker, int volume, orderSide side, const std::chrono::system_clock::time_point &time);
 };
 
+// order message struct type to send from client to server
+
+
 
 #endif //TRADING_ENGINE_ORDER_H

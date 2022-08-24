@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/kevinwang/Documents/projects/trading_engine/exchange -I/Users/kevinwang/Documents/projects/trading_engine/exchange/include
+CXX_INCLUDES = 
 
 CXX_FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -std=gnu++20
 

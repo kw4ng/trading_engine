@@ -4,9 +4,6 @@
 /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking/CMakeFiles/networking.dir
 /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking/CMakeFiles/edit_cache.dir
 /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/networking/CMakeFiles/rebuild_cache.dir
-/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/CMakeFiles/exchange.dir
-/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/CMakeFiles/edit_cache.dir
-/Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/exchange/CMakeFiles/rebuild_cache.dir
 /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/client/CMakeFiles/client.dir
 /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/client/CMakeFiles/edit_cache.dir
 /Users/kevinwang/Documents/projects/trading_engine/cmake-build-debug/client/CMakeFiles/rebuild_cache.dir
